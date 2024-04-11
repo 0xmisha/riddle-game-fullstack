@@ -5,8 +5,8 @@
 
 int main(int argc, char *argv[]) {
   std::string configFile = "server.cfg";
-  int port = 8080;
-  std::string path = "../riddles";
+  int port = 8081;
+  std::string path = "../../server/riddles";
   int seed = 42;
 
   int opt;
