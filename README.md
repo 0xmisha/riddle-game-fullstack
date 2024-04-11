@@ -1,2 +1,4 @@
 # riddle-game-fullstack
-A complete TCP-based multiplayer riddle guessing game, featuring both server and client implementations.
+
+cmake -S . -B build -DBUILD_SERVER=ON -DBUILD_CLIENT=ON
+cmake --build build

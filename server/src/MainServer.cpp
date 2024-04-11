@@ -40,3 +40,14 @@ void MainServer::acceptConnections() {
     clientThread.detach();
   }
 }
+
+bool MainServer::addClientName(const std::string& name) {
+  std::lock_guard<std::mutex> lock(clientsMutex);
+  auto result = connectedClientsNames.insert(name);
+  return result.second;
+}
+
+void MainServer::removeClientName(const std::string& name) {
+  std::lock_guard<std::mutex> lock(clientsMutex);
+  connectedClientsNames.erase(name);
+}

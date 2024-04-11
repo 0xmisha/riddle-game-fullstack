@@ -37,20 +37,31 @@ bool ClientHandler::processMessage(const std::string& messageStr, int clientSock
       if (message["type"] == "start") {
         std::string name;
         if (message.find("name") != message.end()) {
-          clientName = message["name"];
+          name = message["name"];
+          {
+            std::lock_guard<std::mutex> lock(clientsMutex);
+
+            if (!connectedClients.insert(name).second) {
+              responseStr = "type:error,cause:user_already_playing";
+              ServerNetworkHandler::sendResponse(clientSocket, responseStr);
+              close(clientSocket);
+              return false;
+            }
+          }
+
+          clientName = name;
           gameManager.chooseRiddle();
           responseStr = "type:riddle,description:" + gameManager.getCurrentRiddleDescription() + ".";
         }
       } else if (message["type"] == "guess") {
-        std::string word;
         if (message.find("word") != message.end()) {
-          bool isCorrect = gameManager.checkGuess(message["word"]);
-          std::string status = isCorrect ? "correct" : "wrong";
-          responseStr = "type:result,status:" + status + ",attemptsLeft:" + std::to_string(gameManager.getAttemptsLeft()) + ".";
+          std::string word = message["word"];
+          bool isCorrect = gameManager.checkGuess(word);
+          responseStr = "type:result,status:" + std::string(isCorrect ? "correct" : "wrong") + ",attemptsLeft:" + std::to_string(gameManager.getAttemptsLeft()) + ".";
         }
       } else if (message["type"] == "hint") {
         responseStr = "type:hint,hint:" + gameManager.getHint() + ".";
-      }  else if (message["type"] == "surrender") {
+      } else if (message["type"] == "surrender") {
         responseStr = "type:answer,word:" + gameManager.getWord() + ".";
       } else {
         responseStr = "Bad request.";

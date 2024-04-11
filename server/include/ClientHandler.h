@@ -8,10 +8,15 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
+#include <set>
+#include <mutex>
 
 #include "Parser.h"
 #include "GameManager.h"
 #include "ServerNetworkHandler.h"
+
+static std::set<std::string> connectedClients;
+static std::mutex clientsMutex;
 
 class ClientHandler {
  public:
