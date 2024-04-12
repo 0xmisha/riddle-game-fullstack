@@ -7,6 +7,8 @@
 #include <sstream>
 #include <unordered_map>
 #include <stdexcept>
+#include <limits>
+#include <sys/stat.h>
 
 std::unordered_map<std::string, std::string> parseMessage(const std::string& input);
 

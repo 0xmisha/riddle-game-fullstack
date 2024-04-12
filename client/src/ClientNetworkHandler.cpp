@@ -1,6 +1,10 @@
 #include "../include/ClientNetworkHandler.h"
 
 ClientNetworkHandler::ClientNetworkHandler(const std::string& ip, int port) {
+  if (!isValidIpAddress(ip)) {
+    throw std::invalid_argument("Invalid IP address");
+  }
+
   sock = socket(AF_INET, SOCK_STREAM, 0);
   if (sock == -1) {
     std::cerr << "Could not create socket" << std::endl;
@@ -35,4 +39,10 @@ std::string ClientNetworkHandler::receiveMessage() {
     throw std::runtime_error("Receive failed or connection closed");
   }
   return std::string(buffer, bytesReceived);
+}
+
+bool ClientNetworkHandler::isValidIpAddress(const std::string& ip) {
+  struct sockaddr_in sa;
+  int result = inet_pton(AF_INET, ip.c_str(), &(sa.sin_addr));
+  return result != 0;
 }

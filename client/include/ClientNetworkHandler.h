@@ -8,8 +8,10 @@
 #include <unistd.h>
 
 class ClientNetworkHandler {
+ private:
   int sock;
   sockaddr_in serverAddress;
+  bool isValidIpAddress(const std::string& ip);
  public:
   ClientNetworkHandler(const std::string& ip, int port);
   ~ClientNetworkHandler();

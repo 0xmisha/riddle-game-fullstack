@@ -31,12 +31,19 @@ std::unordered_map<std::string, std::string> parseMessage(const std::string& inp
   return keyValuePairs;
 }
 
+bool directoryExists(const std::string& path) {
+  struct stat info;
+  if (stat(path.c_str(), &info) != 0)
+    return false;
+  return (info.st_mode & S_IFDIR) != 0;
+}
+
 void parseConfig(const std::string& fileName, int* port, std::string* path, int* seed) {
   std::ifstream file(fileName);
   std::string line;
 
   if (!file.is_open()) {
-    std::cerr << "Не удалось открыть файл: " << fileName << std::endl;
+    std::cerr << "Cant open file: " << fileName << std::endl;
     return;
   }
 
@@ -46,20 +53,30 @@ void parseConfig(const std::string& fileName, int* port, std::string* path, int*
     if (std::getline(is_line, key, ':')) {
       std::string value;
       if (std::getline(is_line, value)) {
+        value.erase(0, value.find_first_not_of(" \t"));
         if (key == "port") {
-          *port = std::stoi(value);
-        } else if (key == "path") {
-          *path = value;
-          size_t pos = path->find('\"');
-          if (pos != std::string::npos) {
-            path->erase(pos, 1);
+          try {
+            int parsedPort = std::stoi(value);
+            if (parsedPort < 1 || parsedPort > 65535) {
+              std::cerr << "Invalid port number. Please enter a number between 1 and 65535." << std::endl;
+            } else {
+              *port = parsedPort;
+            }
+          } catch (const std::exception& e) {
+            std::cerr << "Invalid port number: " << value << std::endl;
           }
-          pos = path->rfind('\"');
-          if (pos != std::string::npos) {
-            path->erase(pos, 1);
+        } else if (key == "path") {
+          if (directoryExists(value)) {
+            *path = value;
+          } else {
+            std::cerr << "Directory doesnt exist: " << value << std::endl;
           }
         } else if (key == "seed") {
-          *seed = std::stoi(value);
+          try {
+            *seed = std::stoi(value);
+          } catch (const std::exception& e) {
+            std::cerr << "Incorrect seed value: " << value << std::endl;
+          }
         }
       }
     }

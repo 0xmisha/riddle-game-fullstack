@@ -1,0 +1,10 @@
+each riddle must be in each file in this directory with .rdl extension. all other extensions will be ignored.
+first line in riddle file must be riddle answer, second line - riddle description, third line - first hint, fourth line - second hint, fifth line - number of allowed attempts
+example:
+"
+Apple
+A fruit that can be red, green, or yellow
+It's famous for keeping doctors away
+Snow White was poisoned with one
+3
+"
