@@ -42,7 +42,7 @@ bool ClientHandler::processMessage(const std::string& messageStr, int clientSock
             std::lock_guard<std::mutex> lock(clientsMutex);
 
             if (!connectedClients.insert(name).second) {
-              responseStr = "type:error,cause:user_already_playing";
+              responseStr = "type:error,cause:user_already_playing.";
               ServerNetworkHandler::sendResponse(clientSocket, responseStr);
               close(clientSocket);
               return false;

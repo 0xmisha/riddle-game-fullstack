@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]) {
   std::string configFile = "default";
-  int port = 8081;
+  int port = 8084;
   std::string path = "../../server/riddles";
   int seed = 42;
 

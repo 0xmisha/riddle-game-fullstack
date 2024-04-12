@@ -34,6 +34,7 @@ void MainServer::acceptConnections() {
       continue;
     }
     std::thread clientThread([this, clientSocket]() {
+      seed++;
       ClientHandler handler(pathToRiddles, seed);
       handler(clientSocket);
     });
