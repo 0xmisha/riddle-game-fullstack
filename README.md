@@ -37,7 +37,7 @@ This Riddle Game is a fullstack application designed to entertain users by allow
 Available on https://0xmisha.github.io/riddle-game-fullstack/
 
 ## System and Utility Requirements
-- **Operating System:** Compatible with Linux, Windows, and macOS.
+- **Operating System:** Compatible with Unix systems.
 - **Compiler:** Requires a C++ compiler that supports C++11 (e.g., GCC, Clang).
 - **Libraries:** Requires the standard C++ library and POSIX libraries for networking and threading (on Unix-based systems).
 - **Doxygen:** For generating project documentation from annotated source code.
