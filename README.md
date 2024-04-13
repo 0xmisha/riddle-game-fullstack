@@ -25,13 +25,12 @@ This Riddle Game is a fullstack application designed to entertain users by allow
    ```
 3. **Run the server:**
     ```bash
-   build/server/
+   build/server/server
    ```
 
 4. **Run the client:**
     ```bash
-   cmake -S . -B build -DBUILD_SERVER=ON -DBUILD_CLIENT=ON
-   cmake --build build
+   build/server/riddle_client
    ```
 
 ### Documentation:
