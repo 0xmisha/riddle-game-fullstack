@@ -40,7 +40,7 @@ class ClientHandler {
    * @param pathToRiddles Path to the directory containing riddle files.
    * @param seed Seed for random number generation in game logic.
    */
-  ClientHandler(const std::string& pathToRiddles, unsigned int seed);
+  ClientHandler(const std::string& pathToRiddles, unsigned int seed) : gameManager(pathToRiddles, seed) {};
 
   /**
    * @brief Handles the client-server communication for a single client.

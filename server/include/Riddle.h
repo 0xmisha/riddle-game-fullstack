@@ -31,19 +31,20 @@ class Riddle {
    * @param word The answer to the riddle.
    * @param description The question or description of the riddle.
    */
-  Riddle(std::string word, std::string description);
+  Riddle(std::string word, std::string description)
+      : word(std::move(word)), description(std::move(description)), attempts_amount(0) {}
 
   /// Getters for riddle properties
-  const std::string& getWord() const;
-  const std::string& getDescription() const;
-  const std::string& getHint1() const;
-  const std::string& getHint2() const;
-  int getAttemptsAmount() const;
+  const std::string& getWord() const { return word; }
+  const std::string& getDescription() const { return description; }
+  const std::string& getHint1() const { return hint1; }
+  const std::string& getHint2() const { return hint2; }
+  int getAttemptsAmount() const { return attempts_amount; }
 
   /// Setters for hints and attempts
-  void setHint1(const std::string& hint);
-  void setHint2(const std::string& hint);
-  void setTriesAmount(int amount);
+  void setHint1(const std::string& hint) { hint1 = hint; }
+  void setHint2(const std::string& hint) { hint2 = hint; }
+  void setTriesAmount(int amount) { attempts_amount = amount; }
 };
 
 /**

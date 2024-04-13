@@ -61,7 +61,7 @@ class MainServer {
   /**
    * @brief Destructor that closes the server socket.
    */
-  ~MainServer();
+  ~MainServer() { close(serverSocket); };
 };
 
 #endif // RIDDLE_SERVER_INCLUDE_MAINSERVER_H_
