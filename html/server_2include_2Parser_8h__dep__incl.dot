@@ -1,0 +1,18 @@
+digraph "server/include/Parser.h"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="server/include/Parser.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Provides utility functions for parsing configurations and messages."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="server/src/Parser.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server_2src_2Parser_8cpp.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="server/include/ClientHandler.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ClientHandler_8h.html",tooltip="Handles individual client connections for the riddle game server."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="server/src/ClientHandler.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ClientHandler_8cpp.html",tooltip=" "];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="server/include/MainServer.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$MainServer_8h.html",tooltip="Manages the main server operations for the riddle game."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="server/src/MainServer.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$MainServer_8cpp.html",tooltip=" "];
+}
