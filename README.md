@@ -34,6 +34,9 @@ This Riddle Game is a fullstack application designed to entertain users by allow
    cmake --build build
    ```
 
+### Key Features:
+Available on https://0xmisha.github.io/riddle-game-fullstack/
+
 ## System and Utility Requirements
 - **Operating System:** Compatible with Linux, Windows, and macOS.
 - **Compiler:** Requires a C++ compiler that supports C++11 (e.g., GCC, Clang).
